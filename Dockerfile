@@ -14,6 +14,7 @@ COPY converttotorch.py ./
 RUN python3 converttotorch.py
 RUN pip3 install fastapi pydantic uvicorn && pip3 install numpy --upgrade && pip3 install git+https://github.com/finetuneanon/transformers@gpt-j
 RUN rm -rf /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1 /usr/lib/x86_64-linux-gnu/libcuda.so.1
+RUN pip3 install protobuf==3.20.*
 COPY web.py ./
 COPY model.py ./
 CMD uvicorn web:app --port 8080 --host 0.0.0.0
