@@ -2,7 +2,7 @@ FROM nvidia/cuda:11.1-base
 RUN apt update\
   && apt install -y python3 python3-pip wget git zstd curl\
   && DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install -y nvidia-cuda-toolkit
-RUN wget -c https://mystic.the-eye.eu/public/AI/GPT-J-6B/step_383500_slim.tar.zstd\
+RUN wget -c https://the-eye.eu/public/AI/GPT-J-6B/step_383500_slim.tar.zstd\
   && tar -I zstd -xf step_383500_slim.tar.zstd\
   && rm step_383500_slim.tar.zstd
 RUN git clone https://github.com/kingoflolz/mesh-transformer-jax.git
@@ -16,5 +16,3 @@ RUN pip3 install fastapi pydantic uvicorn && pip3 install numpy --upgrade && pip
 COPY web.py ./
 COPY model.py ./
 CMD uvicorn web:app --port 8080 --host 0.0.0.0
-
-
